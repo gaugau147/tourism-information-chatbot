@@ -1,4 +1,4 @@
-## Tourist helpdesk chatbot
+## Tourist Helpdesk Chatbot
 This chatbot was built with love. It's purpose is to help tourists get information about Hue City easily. 
 
 ## Version
@@ -12,7 +12,7 @@ This chatbot was built with love. It's purpose is to help tourists get informati
 * Dense
 
 ## What TH chatbot can do
-TH chatbot was just born. It can do simple thing like detect user's intents and choose a random response from the list of response. It does not classify user intents well, but what can we expect an infant to do?
+TH chatbot was just born. It can do simple things like detecting user's intents and choosing a random response from the list of responses. It does not classify user intents well, but what can we expect an infant to do?
 
 ## Contact
 [Ngoc Diep](diepttn147@gmail.com)
