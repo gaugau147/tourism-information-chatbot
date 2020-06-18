@@ -52,32 +52,34 @@ def loadResponses(data_filepath, label_tokenizer_filepath):
         responses[str(tag_index)] = intent['responses']
     return responses
 
-def main():
-    # Load the trained model instance
-    model = tf.keras.models.load_model('model/model.h5')
-    max_len = 16
-    tokenizer_filepath = 'model/sentence_tokenizer.json'
-    label_tokenizer_filepath = 'model/label_tokenizer.json'
-    data_filepath = 'intents.json'
+def getResponse(input_seq):
+    result = model.predict(input_seq)
+    result_index = np.argmax(result)
+    answer = random.choice(responses[str(result_index)])
+    return answer
 
-    # load the available responses for each tag into dictionary
-    responses = loadResponses(data_filepath, label_tokenizer_filepath)
-    print('----------------------------------------')
-    print("Bot started, type 'stop' to exit")
-    # start chat
-    while True:
-        user_input = input("User: ")
+# Load the trained model instance
+model = tf.keras.models.load_model('model/model.h5')
+max_len = 16
+tokenizer_filepath = 'model/sentence_tokenizer.json'
+label_tokenizer_filepath = 'model/label_tokenizer.json'
+data_filepath = 'intents.json'
 
-        if user_input.lower() == 'stop':
-            break
+# load the available responses for each tag into dictionary
+responses = loadResponses(data_filepath, label_tokenizer_filepath)
+# print('----------------------------------------')
+# print("Bot started, type 'stop' to exit")
+# start chat
+# while True:
+#     user_input = input("User: ")
 
-        input_seq = process_input(user_input, max_len, tokenizer_filepath)
+#     if user_input.lower() == 'stop':
+#         break
 
-        result = model.predict(input_seq)
-        result_index = np.argmax(result)
+#     input_seq = process_input(user_input, max_len, tokenizer_filepath)
 
-        # print(result)
-        print('Bot: ' + random.choice(responses[str(result_index)]))
+#     answer = getResponse(input_seq)
 
-if __name__ == "__main__":
-    main()
+#     # print(result)
+#     print('Bot: ' + answer)
+
